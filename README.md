@@ -46,3 +46,22 @@ Relationships: one session has many pageviews; one session has at most one order
 - Converted all created_at columns from text to datetime.
 - Created marketing_channel: the UTM source if present; otherwise organic_search if a referer exists (43,411 sessions), otherwise direct (39,917 sessions). No rows were deleted.
 - Cleaned files are in data/processed/ (notebooks/02_data_cleaning.ipynb).
+
+
+## SQL Analysis
+Scripts: `sql/01_create_tables.sql` (schema) and `sql/02_business_queries.sql` (14 queries, PostgreSQL).
+
+| Question | Result |
+|---|---|
+| Unique orders | 32,313 |
+| Total revenue | $1,938,509.75 |
+| Average order value | $59.99 |
+| Top product | The Original Mr. Fuzzy ($1,211,057.74, 62.5% of revenue) |
+| Top channel by sessions | gsearch (316,035 sessions, 66.8%) |
+| Top device by sessions | Desktop (327,027 sessions, 69.2%) |
+| Session-to-order conversion | 6.83% |
+| Refunds | 1,731 refunds worth $85,338.69 |
+| Highest revenue month (complete months) | December 2014: $144,823.02 (2,314 orders) |
+| Lowest revenue month (complete months) | April 2012: $4,949.01 (99 orders) |
+
+Note: the company sells only four products, so the "top five products" query returns four rows. The data has no product category column, so product performance is compared by individual product (revenue, profit and margin). March 2012 and March 2015 are partial months, so month rankings use complete months only.
